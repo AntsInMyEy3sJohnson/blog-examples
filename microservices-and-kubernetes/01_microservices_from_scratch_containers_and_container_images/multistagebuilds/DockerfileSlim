@@ -1,0 +1,13 @@
+# Stage 1: Build
+FROM maven:3.6.3-openjdk-14-slim as build
+
+WORKDIR /maven
+COPY . .
+RUN mvn clean package
+
+# Stage 2: Run
+FROM adoptopenjdk:14.0.2_8-jre-hotspot-bionic
+
+WORKDIR /app
+COPY --from=build /maven/target/*.jar .
+CMD ls | grep -e "jar$" | xargs java -jar

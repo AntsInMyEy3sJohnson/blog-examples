@@ -1,0 +1,8 @@
+FROM maven:3.6.3-openjdk-14-slim
+
+WORKDIR /maven
+COPY . .
+RUN mvn clean package
+
+WORKDIR ./target
+CMD ls | grep -e "jar$" | xargs java -jar
