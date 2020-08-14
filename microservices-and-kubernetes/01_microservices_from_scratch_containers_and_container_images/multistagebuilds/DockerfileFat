@@ -1,8 +1,14 @@
+# Use base image containing both Maven and a JDK
 FROM maven:3.6.3-openjdk-14-slim
 
+# Create and switch to 'maven' directory
 WORKDIR /maven
+# Copy everything required for the build into the image
+# (Unnecessary stuff ignored by means of the '.dockerignore' file)
 COPY . .
+# Build the artifact
 RUN mvn clean package
 
+# Switch to 'target' folder and run jar file
 WORKDIR ./target
 CMD ls | grep -e "jar$" | xargs java -jar
