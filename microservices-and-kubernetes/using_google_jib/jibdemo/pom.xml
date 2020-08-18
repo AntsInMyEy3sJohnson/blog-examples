@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.3.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>io.github.antsinmyey3sjohnson</groupId>
+    <artifactId>jibdemo</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>jibdemo</name>
+    <description>Demonstrates using Google Jib.</description>
+
+    <properties>
+        <java.version>14</java.version>
+        <google-jib-version>2.5.2</google-jib-version>
+        <java-xmx>256m</java-xmx>
+        <java-xms>256m</java-xms>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>${google-jib-version}</version>
+                <configuration>
+                    <from>
+                        <image>adoptopenjdk:14.0.2_8-jre-hotspot-bionic@sha256:c88559b33658c49421171e5c119f694db0b73d8efa6c718f6b11452f45abac1f</image>
+                    </from>
+                    <to>
+                        <image>docker.io/antsinmyey3sjohnson/jib-demo</image>
+                        <tags>${project.version}</tags>
+                    </to>
+                    <container>
+                        <jvmFlags>
+                            <jvmFlag>-Xmx${java-xmx}</jvmFlag>
+                            <jvmFlag>-Xms${java-xms}</jvmFlag>
+                        </jvmFlags>
+                    </container>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
