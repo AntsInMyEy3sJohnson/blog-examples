@@ -23,4 +23,9 @@ public class Invoice {
     public double getAmount() {
         return amount;
     }
+
+    @Override
+    public String toString() {
+        return "%s on %s for %.2f".formatted(subject, date, amount);
+    }
 }

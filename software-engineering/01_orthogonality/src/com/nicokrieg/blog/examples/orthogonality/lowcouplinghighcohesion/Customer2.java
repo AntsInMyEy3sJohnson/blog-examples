@@ -24,13 +24,9 @@ public class Customer2 {
         return name;
     }
 
-    public List<Invoice> getInvoices() {
-        return invoices;
-    }
-
     @Override
     public String toString() {
-        return "Customer '%s' with ID '%d' has %d invoices.".formatted(name, id, invoices.size());
+        return "Customer '%s' with ID '%d' has %d %s.".formatted(name, id, invoices.size(), invoices.size() == 1 ? "invoice" : "invoices");
     }
 
 }

@@ -32,3 +32,4 @@ build/
 
 gcv-credentials.json
 application.log
+*.class

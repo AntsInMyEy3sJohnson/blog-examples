@@ -1,6 +1,7 @@
 package com.nicokrieg.blog.examples.orthogonality.inappropriateintimacy;
 
-import com.nicokrieg.blog.examples.orthogonality.tightcoupling.Invoice;
+
+import com.nicokrieg.blog.examples.orthogonality.Invoice;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,13 +39,9 @@ public class Customer3 {
         return name;
     }
 
-    public List<Invoice> getInvoices() {
-        return invoices;
-    }
-
     @Override
     public String toString() {
-        return "Customer '%s' with ID '%d' has %d invoices.".formatted(name, id, invoices.size());
+        return "Customer '%s' with ID '%d' has %d %s.".formatted(name, id, invoices.size(), invoices.size() == 1 ? "invoice" : "invoices");
     }
 
 }
