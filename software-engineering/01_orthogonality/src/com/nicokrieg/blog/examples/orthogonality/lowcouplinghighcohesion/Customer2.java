@@ -1,17 +1,19 @@
 package com.nicokrieg.blog.examples.orthogonality.lowcouplinghighcohesion;
 
+import com.nicokrieg.blog.examples.orthogonality.Invoice;
+
 import java.util.List;
 
-public class Customer {
+public class Customer2 {
 
     private final long id;
     private final String name;
     private final List<Invoice> invoices;
 
-    public Customer(long id, String name) {
+    public Customer2(long id, String name) {
         this.id = id;
         this.name = name;
-        this.invoices = InvoiceReader.getInstance().getInvoicesByCustomerID(id);
+        this.invoices = InvoiceReader2.getInstance().getInvoicesByCustomerID(id);
     }
 
     public long getId() {
@@ -24,6 +26,11 @@ public class Customer {
 
     public List<Invoice> getInvoices() {
         return invoices;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer '%s' with ID '%d' has %d invoices.".formatted(name, id, invoices.size());
     }
 
 }

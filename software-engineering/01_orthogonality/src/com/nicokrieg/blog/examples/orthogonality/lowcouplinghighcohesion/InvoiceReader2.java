@@ -1,5 +1,7 @@
 package com.nicokrieg.blog.examples.orthogonality.lowcouplinghighcohesion;
 
+import com.nicokrieg.blog.examples.orthogonality.Invoice;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -8,18 +10,18 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class InvoiceReader {
+public class InvoiceReader2 {
 
-    private static InvoiceReader invoiceReader;
+    private static InvoiceReader2 invoiceReader2;
 
-    private InvoiceReader() {
+    private InvoiceReader2() {
     }
 
-    public static InvoiceReader getInstance() {
-        if (Objects.isNull(invoiceReader)) {
-            invoiceReader = new InvoiceReader();
+    public static InvoiceReader2 getInstance() {
+        if (Objects.isNull(invoiceReader2)) {
+            invoiceReader2 = new InvoiceReader2();
         }
-        return invoiceReader;
+        return invoiceReader2;
     }
 
     public List<Invoice> getInvoicesByCustomerID(long customerID) {
@@ -27,7 +29,7 @@ public class InvoiceReader {
         try {
             return Files.lines(Paths.get(String.format("invoices/%d.csv", customerID)))
                     .map(invoiceString -> {
-                        String[] invoiceData = invoiceString.split(",");
+                        var invoiceData = invoiceString.split(",");
                         return new Invoice(invoiceData[0], invoiceData[1], Double.parseDouble(invoiceData[2]));
                     })
                     .collect(Collectors.toList());

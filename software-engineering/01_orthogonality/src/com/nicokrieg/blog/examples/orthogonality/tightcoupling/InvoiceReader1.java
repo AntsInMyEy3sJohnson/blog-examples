@@ -5,11 +5,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.Reader;
 
-public class InvoiceReader {
+public class InvoiceReader1 {
 
     private final String filePath;
 
-    public InvoiceReader(String filePath) {
+    public InvoiceReader1(String filePath) {
         this.filePath = filePath;
     }
 

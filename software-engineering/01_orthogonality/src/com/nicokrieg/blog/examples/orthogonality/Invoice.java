@@ -1,4 +1,4 @@
-package com.nicokrieg.blog.examples.orthogonality.lowcouplinghighcohesion;
+package com.nicokrieg.blog.examples.orthogonality;
 
 public class Invoice {
 
