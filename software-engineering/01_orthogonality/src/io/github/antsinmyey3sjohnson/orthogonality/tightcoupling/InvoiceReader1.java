@@ -1,4 +1,4 @@
-package com.nicokrieg.blog.examples.orthogonality.tightcoupling;
+package io.github.antsinmyey3sjohnson.orthogonality.tightcoupling;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

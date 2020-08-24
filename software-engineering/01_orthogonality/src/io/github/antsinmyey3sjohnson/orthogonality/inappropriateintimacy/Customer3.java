@@ -1,7 +1,7 @@
-package com.nicokrieg.blog.examples.orthogonality.inappropriateintimacy;
+package io.github.antsinmyey3sjohnson.orthogonality.inappropriateintimacy;
 
 
-import com.nicokrieg.blog.examples.orthogonality.Invoice;
+import io.github.antsinmyey3sjohnson.orthogonality.Invoice;
 
 import java.util.ArrayList;
 import java.util.List;

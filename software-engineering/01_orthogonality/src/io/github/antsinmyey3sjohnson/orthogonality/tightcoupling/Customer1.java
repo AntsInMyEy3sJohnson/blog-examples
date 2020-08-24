@@ -1,6 +1,6 @@
-package com.nicokrieg.blog.examples.orthogonality.tightcoupling;
+package io.github.antsinmyey3sjohnson.orthogonality.tightcoupling;
 
-import com.nicokrieg.blog.examples.orthogonality.Invoice;
+import io.github.antsinmyey3sjohnson.orthogonality.Invoice;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;

@@ -1,7 +1,8 @@
-package com.nicokrieg.blog.examples.orthogonality.telldontask;
+package io.github.antsinmyey3sjohnson.orthogonality.telldontask;
 
-import com.nicokrieg.blog.examples.orthogonality.Invoice;
-import com.nicokrieg.blog.examples.orthogonality.lowcouplinghighcohesion.InvoiceReader2;
+
+import io.github.antsinmyey3sjohnson.orthogonality.Invoice;
+import io.github.antsinmyey3sjohnson.orthogonality.lowcouplinghighcohesion.InvoiceReader2;
 
 import java.util.List;
 

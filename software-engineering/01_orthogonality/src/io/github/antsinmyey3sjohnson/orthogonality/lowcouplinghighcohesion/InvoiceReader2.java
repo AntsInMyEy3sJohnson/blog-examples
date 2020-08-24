@@ -1,6 +1,6 @@
-package com.nicokrieg.blog.examples.orthogonality.lowcouplinghighcohesion;
+package io.github.antsinmyey3sjohnson.orthogonality.lowcouplinghighcohesion;
 
-import com.nicokrieg.blog.examples.orthogonality.Invoice;
+import io.github.antsinmyey3sjohnson.orthogonality.Invoice;
 
 import java.io.IOException;
 import java.nio.file.Files;

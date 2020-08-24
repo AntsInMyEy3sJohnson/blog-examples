@@ -1,4 +1,4 @@
-package com.nicokrieg.blog.examples.orthogonality.telldontask;
+package io.github.antsinmyey3sjohnson.orthogonality.telldontask;
 
 public class Account2 {
 

@@ -1,4 +1,4 @@
-package com.nicokrieg.blog.examples.orthogonality.inappropriateintimacy;
+package io.github.antsinmyey3sjohnson.orthogonality.inappropriateintimacy;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

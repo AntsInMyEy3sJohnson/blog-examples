@@ -1,12 +1,12 @@
-package com.nicokrieg.blog.examples.orthogonality;
+package io.github.antsinmyey3sjohnson.orthogonality;
 
-import com.nicokrieg.blog.examples.orthogonality.inappropriateintimacy.Customer3;
-import com.nicokrieg.blog.examples.orthogonality.lowcouplinghighcohesion.Customer2;
-import com.nicokrieg.blog.examples.orthogonality.telldontask.Account1;
-import com.nicokrieg.blog.examples.orthogonality.telldontask.Account2;
-import com.nicokrieg.blog.examples.orthogonality.telldontask.Customer4;
-import com.nicokrieg.blog.examples.orthogonality.telldontask.Customer5;
-import com.nicokrieg.blog.examples.orthogonality.tightcoupling.Customer1;
+import io.github.antsinmyey3sjohnson.orthogonality.inappropriateintimacy.Customer3;
+import io.github.antsinmyey3sjohnson.orthogonality.lowcouplinghighcohesion.Customer2;
+import io.github.antsinmyey3sjohnson.orthogonality.telldontask.Account1;
+import io.github.antsinmyey3sjohnson.orthogonality.telldontask.Account2;
+import io.github.antsinmyey3sjohnson.orthogonality.telldontask.Customer4;
+import io.github.antsinmyey3sjohnson.orthogonality.telldontask.Customer5;
+import io.github.antsinmyey3sjohnson.orthogonality.tightcoupling.Customer1;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +23,6 @@ public class Main {
                 new Customer3(301, "Luke"),
                 new Customer3(302, "Linda")
         ).forEach(System.out::println);
-
 
         // Bad!
         var customer4 = new Customer4(401, "Tylor", new Account1(965.75));

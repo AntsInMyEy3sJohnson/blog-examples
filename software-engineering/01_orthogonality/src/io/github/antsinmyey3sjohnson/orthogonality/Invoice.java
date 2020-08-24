@@ -1,4 +1,4 @@
-package com.nicokrieg.blog.examples.orthogonality;
+package io.github.antsinmyey3sjohnson.orthogonality;
 
 public class Invoice {
 
