@@ -5,4 +5,4 @@ FROM python:alpine3.12
 ADD hello_container_service.py /
 
 # Run Python script
-CMD ["python", "./hello_container_service.py"]
+CMD ["python", "-u", "./hello_container_service.py"]
