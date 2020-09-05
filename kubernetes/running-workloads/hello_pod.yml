@@ -5,9 +5,17 @@ metadata:
   labels:
     name: hello-pod
 spec:
+  restartPolicy: Always
   containers:
   - name: hello-container-service
     image: antsinmyey3sjohnson/hello-container-service:1.0
     ports:
       - containerPort: 8081
+    resources:
+        requests:
+          cpu: "100m"
+          memory: "64Mi"
+        limits:
+          cpu: "200m"
+          memory: "128Mi"
 
