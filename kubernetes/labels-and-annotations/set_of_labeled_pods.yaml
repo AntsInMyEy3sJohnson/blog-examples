@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: simple-label-demonstration
+  name: labelled-pods-example
 ---
 apiVersion: v1
 kind: Pod
 metadata:
   name: persistence-app-instance-1
-  namespace: simple-label-demonstration
+  namespace: labelled-pods-example
   labels:
     app.kubernetes.io/name: persistence-app
     group: persistence
@@ -25,7 +25,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: persistence-app-instance-2
-  namespace: simple-label-demonstration
+  namespace: labelled-pods-example
   labels:
     app.kubernetes.io/name: persistence-app
     group: persistence
@@ -43,7 +43,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: another-persistence-app-instance-1
-  namespace: simple-label-demonstration
+  namespace: labelled-pods-example
   labels:
     app.kubernetes.io/name: another-persistence-app
     group: persistence
@@ -61,7 +61,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: search-app-instance-1
-  namespace: simple-label-demonstration
+  namespace: labelled-pods-example
   labels:
     app.kubernetes.io/name: search-app
     group: search
