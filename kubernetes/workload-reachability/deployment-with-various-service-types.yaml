@@ -55,6 +55,8 @@ kind: Service
 metadata:
   name: hello-service-clusterip
   namespace: service-types-example
+  labels:
+    type: clusterip
 spec:
   type: ClusterIP
   selector:
@@ -68,6 +70,8 @@ kind: Service
 metadata:
   name: hello-service-nodeport
   namespace: service-types-example
+  labels:
+    type: nodeport
 spec:
   type: NodePort
   selector:
@@ -75,9 +79,13 @@ spec:
   ports:
     - name: http8080
       port: 8080
+      # Will assume the value of 'port' if unspecified
+      targetPort: http8080
       nodePort: 30080
     - name: http8081
       port: 8081
+      # Will assume the value of 'port' if unspecified
+      targetPort: http8081
       nodePort: 30081
     
    
