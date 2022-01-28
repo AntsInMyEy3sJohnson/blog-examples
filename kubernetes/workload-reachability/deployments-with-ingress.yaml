@@ -1,0 +1,256 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: imagemanager
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: image-labeling
+  namespace: imagemanager
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: image-labeling
+  template:
+    metadata:
+      labels:
+        app: image-labeling
+    spec:
+      containers:
+        - name: image-labeling-service
+          image: gophernet/netcat
+          command: ["/bin/sh", "-c"]
+          args: ["while true; do echo -e \"HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n*Busy image labeling noises*\" | nc -l -p 8080; done"]
+          resources:
+            limits: 
+              cpu: "100m"
+              memory: "128Mi"
+          ports: 
+            - name: http
+              containerPort: 8080
+          livenessProbe:
+            httpGet:
+              port: http
+          readinessProbe:
+            httpGet:
+              port: http
+            initialDelaySeconds: 2
+            periodSeconds: 30
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: image-text-extraction
+  namespace: imagemanager
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: image-text-extraction
+  template:
+    metadata: 
+      labels:
+        app: image-text-extraction
+    spec:
+      containers:
+        - name: image-text-extraction-service
+          image: gophernet/netcat
+          command: ["/bin/sh", "-c"]
+          args: ["while true; do echo -e \"HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n*Busy text extraction noises*\" | nc -l -p 8080; done"]
+          resources:
+            limits:
+              cpu: "100m"
+              memory: "128Mi"
+          ports:
+            - name: http
+              containerPort: 8080
+          livenessProbe:
+            httpGet:
+              port: http
+          readinessProbe:
+            httpGet:
+              port: http
+            initialDelaySeconds: 2
+            periodSeconds: 30
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: image-search
+  namespace: imagemanager
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: image-search
+  template:
+    metadata:
+      labels:
+        app: image-search
+    spec:
+      containers:
+        - name: image-search-service
+          image: gophernet/netcat
+          command: ["/bin/sh", "-c"]
+          args: ["while true; do echo -e \"HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n*Busy image search noises*\" | nc -l -p 8080; done"]
+          resources:
+            limits:
+              cpu: "100m"
+              memory: "128Mi"
+          ports:
+            - name: http
+              containerPort: 8080
+          livenessProbe:
+            httpGet:
+              port: http
+          readinessProbe:
+            httpGet:
+              port: http
+            initialDelaySeconds: 2
+            periodSeconds: 30
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: image-labeling
+  namespace: imagemanager
+spec:
+  selector:
+    app: image-labeling
+  ports:
+    - name: http
+      port: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: image-search
+  namespace: imagemanager
+spec:
+  selector:
+    app: image-search
+  ports:
+    - name: http
+      port: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: image-text-extraction
+  namespace: imagemanager
+spec: 
+  selector:
+    app: image-text-extraction
+  ports:
+    - name: http
+      port: 8080
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: imagemanager-services
+  namespace: imagemanager
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web, websecure
+spec:
+  rules:
+    - host: api.imagemanager.io
+      http:
+        paths:
+          - path: /labeling
+            pathType: Prefix
+            backend:
+              service:
+                name: image-labeling
+                port:
+                  name: http
+          - path: /search
+            pathType: Prefix
+            backend:
+              service:
+                name: image-search
+                port: 
+                  name: http
+          - path: /text-extraction
+            pathType: Prefix
+            backend:
+              service:
+                name: image-text-extraction
+                port:
+                  name: http
+--- 
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: notesmanager
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notes-search
+  namespace: notesmanager
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: notes-search
+  template:
+    metadata:
+      labels:
+        app: notes-search
+    spec:
+      containers:
+        - name: notes-search-service
+          image: gophernet/netcat
+          command: ["/bin/sh", "-c"]
+          args: ["while true; do echo -e \"HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n*Busy note searching noises*\" | nc -l -p 8080; done"]
+          resources:
+            limits: 
+              cpu: "100m"
+              memory: "128Mi"
+          ports: 
+            - name: http
+              containerPort: 8080
+          livenessProbe:
+            httpGet:
+              port: http
+          readinessProbe:
+            httpGet:
+              port: http
+            initialDelaySeconds: 2
+            periodSeconds: 30
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: notes-search
+  namespace: notesmanager
+spec:
+  selector:
+    app: notes-search
+  ports:
+    - name: http
+      port: 8080
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: notesmanager-services
+  namespace: notesmanager
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web, websecure
+spec:
+  rules:
+    - host: api.notesmanager.io
+      http:
+        paths:
+          - path: /search
+            pathType: Prefix
+            backend:
+              service:
+                name: notes-search
+                port:
+                  name: http
+                  
