@@ -1,0 +1,147 @@
+# (Namespace spec contained in here again so this file works without having 
+# applied the other two sample files first)
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: imagemanager
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: login
+  namespace: imagemanager
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: login
+  template:
+    metadata:
+      labels:
+        app: login
+    spec:
+      containers:
+        - name: login-service
+          image: gophernet/netcat
+          command: ["/bin/sh", "-c"]
+          args: ["while true; do echo -e \"HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\nPerforming login for ImageManager platform\" | nc -l -p 8080; done"]
+          resources:
+            limits: 
+              cpu: "100m"
+              memory: "128Mi"
+          ports: 
+            - name: http
+              containerPort: 8080
+          livenessProbe:
+            httpGet:
+              port: http
+          readinessProbe:
+            httpGet:
+              port: http
+            initialDelaySeconds: 2
+            periodSeconds: 30
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: login
+  namespace: imagemanager
+spec:
+  selector:
+    app: login
+  ports:
+    - name: http
+      port: 8080
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: imagemanager-login
+  namespace: imagemanager
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web, websecure
+spec:
+  rules:
+    - host: apps.apigateway.awesomecompany.io
+      http:
+        paths:
+          - path: /login
+            pathType: Prefix
+            backend:
+              service:
+                name: login
+                port:
+                  name: http
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: notesmanager
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: login
+  namespace: notesmanager
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: login
+  template:
+    metadata:
+      labels:
+        app: login
+    spec:
+      containers:
+        - name: login-service
+          image: gophernet/netcat
+          command: ["/bin/sh", "-c"]
+          args: ["while true; do echo -e \"HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\nPerforming login for NotesManager platform\" | nc -l -p 8080; done"]
+          resources:
+            limits: 
+              cpu: "100m"
+              memory: "128Mi"
+          ports: 
+            - name: http
+              containerPort: 8080
+          livenessProbe:
+            httpGet:
+              port: http
+          readinessProbe:
+            httpGet:
+              port: http
+            initialDelaySeconds: 2
+            periodSeconds: 30
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: login
+  namespace: notesmanager
+spec:
+  selector:
+    app: login
+  ports:
+    - name: http
+      port: 8080
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: notesmanager-login
+  namespace: notesmanager
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web, websecure
+spec:
+  rules:
+    - host: apps.apigateway.awesomecompany.io
+      http:
+        paths:
+          - path: /login
+            pathType: Prefix
+            backend:
+              service:
+                name: login
+                port:
+                  name: http
