@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: replicaset-examples
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: simple-replicaset
+  namespace: replicaset-examples
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: simple-replicaset
+  template:
+    metadata:
+      labels:
+        app: simple-replicaset
+    spec:
+      containers:
+      - name: hello-service
+        image: antsinmyey3sjohnson/hello-container-service@sha256:e9de17b4fbfc6a1f52d07609e285dab3818412016200f189c68e441bf23effb3
+        ports:
+        - name: http
+          containerPort: 8081
