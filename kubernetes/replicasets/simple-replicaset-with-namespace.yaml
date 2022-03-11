@@ -12,11 +12,11 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: simple-replicaset
+      app: hello-replicaset
   template:
     metadata:
       labels:
-        app: simple-replicaset
+        app: hello-replicaset
     spec:
       containers:
       - name: hello-service
