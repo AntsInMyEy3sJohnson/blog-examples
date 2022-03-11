@@ -6,7 +6,7 @@ metadata:
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
-  name: simple-replicaset
+  name: hello-replicaset
   namespace: replicaset-examples
 spec:
   replicas: 3
