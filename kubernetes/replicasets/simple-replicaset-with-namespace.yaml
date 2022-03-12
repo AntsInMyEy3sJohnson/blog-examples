@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: replicaset-examples
+  name: replicaset-example
 ---
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
   name: hello-replicaset
-  namespace: replicaset-examples
+  namespace: replicaset-example
 spec:
   replicas: 3
   selector:
