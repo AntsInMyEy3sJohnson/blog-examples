@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-service
+spec:
+  selector:
+    matchLabels:
+      app: hello-service
+  template:
+    metadata:
+      labels:
+        app: hello-service
+    spec:
+      containers:
+      - name: hello-service
+        image: antsinmyey3sjohnson/hello-container-service@sha256:e9de17b4fbfc6a1f52d07609e285dab3818412016200f189c68e441bf23effb3
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8081
