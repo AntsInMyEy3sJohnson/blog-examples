@@ -1,0 +1,100 @@
+platform:
+  deploy: true
+  service:
+    type: NodePort
+    port: 5701
+  cluster:
+    logging:
+      level: INFO
+    members:
+      image: hazelcast/hazelcast:5.1.1
+      imagePullPolicy: IfNotPresent
+      count: 1
+      ports:
+        member: 5701
+        metrics: 8080
+      gracefulShutDown:
+        maxWaitSeconds: 60
+      podResources:
+        requests:
+          cpu: "1"
+          memory: "3G"
+        limits:
+          cpu: "2"
+          memory: "3G"
+      jvmResources:
+        xmx: 2500m
+        xms: 2500m
+      liveness:
+        initialDelaySeconds: 15
+        periodSeconds: 10
+      readiness:
+        initialDelaySeconds: 30
+        periodSeconds: 10
+  config:
+    hazelcast:
+      jet:
+        enabled: true
+      cluster-name: "hazelcastplatform"
+      properties:
+        hazelcast.heartbeat.interval.seconds: 10
+        hazelcast.jmx: true
+        hazelcast.logging.type: log4j2
+      network:
+        rest-api:
+          enabled: true
+          endpoint-groups:
+            HEALTH_CHECK:
+              enabled: true
+        join:
+          multicast:
+            enabled: false
+          kubernetes:
+            enabled: true
+            service-port: 5701
+      # https://github.com/hazelcast/hazelcast/blob/master/hazelcast/src/main/resources/hazelcast-full-example.yaml
+      map:
+        # Create very restrictive config for all map names not corresponding to one of 
+        # the other patterns such as to protect cluster from potentially misbehaving clients
+        default:
+          backup-count: 0
+          max-idle-seconds: 1
+          in-memory-format: BINARY
+        # Config for the Hazeltest maps
+        ht_*:
+          backup-count: 1
+          # Keep entries around for ten minutes
+          max-idle-seconds: 600
+          eviction:
+            eviction-policy: LRU
+            max-size-policy: FREE_HEAP_PERCENTAGE
+            size: 10
+
+mancenter:
+  deploy: true
+  service:
+    type: NodePort
+    port: 8080
+  instance:
+    image: hazelcast/management-center:5.1.3
+    imagePullPolicy: IfNotPresent
+    # 'enabled' vs. 'enable' is not a typo, those properties are actually called like so
+    javaOpts: "-Dhazelcast.mc.metrics.persistence.enabled=false -Dhazelcast.mc.healthCheck.enable=true"
+    ports:
+      web:
+        name: web
+        port: 8080
+      health:
+        name: health
+        port: 8081
+    liveness:
+      path: /health
+    readiness:
+      path: /health
+    resources:
+      requests:
+        cpu: "500m"
+        memory: "1500M"
+      limits:
+        cpu: "1"
+        memory: "1500M"
