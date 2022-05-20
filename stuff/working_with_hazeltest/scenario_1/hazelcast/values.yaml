@@ -15,13 +15,16 @@ platform:
         metrics: 8080
       gracefulShutDown:
         maxWaitSeconds: 60
-      resources:
+      podResources:
         requests:
           cpu: "1"
           memory: "3G"
         limits:
           cpu: "2"
           memory: "3G"
+      jvmResources:
+        xmx: 2500m
+        xms: 2500m
       liveness:
         initialDelaySeconds: 15
         periodSeconds: 10
