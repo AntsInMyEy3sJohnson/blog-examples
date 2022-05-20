@@ -1,4 +1,4 @@
-replicaCount: 50
+replicaCount: 20
 
 app:
   # 0.2.3
@@ -28,7 +28,7 @@ config:
       # If set to 'false', the PokedexRunner will not be executed
       enabled: true
       # The runner will spawn one goroutine for each map
-      numMaps: 5
+      numMaps: 100
       # If set to 'true', each of the <numMaps> goroutines will use its own map name, thus effectively accessing its own map
       # In other words, if this is set to 'true', this PokedexRunner will use <numMaps> distinct maps in Hazelcast; if it is set
       # to 'false', the <numMaps> goroutines will access the same map
@@ -39,7 +39,7 @@ config:
       # If so to 'true', the PokedexRunner will append the ID of its Hazeltest instance to the map name such that it gets its own map in Hazelcast; 
       # if set to 'false', then this PokedexRunner will share its maps with the maps created by PokedexRunners in other Hazeltest instances
       # Set this to 'false' if you would like to make all Hazeltest instances access the same map or maps
-      appendClientIdToMapName: true
+      appendClientIdToMapName: false
       # The number of test loops (e.g., ingest-read-delete) to execute in each map goroutine
       numRuns: 10000
       mapPrefix:
@@ -63,16 +63,16 @@ config:
       # Same as for PokedexRunner
       enabled: true
       # Same as for PokedexRunner
-      numMaps: 20
+      numMaps: 200
       # In contrast to the PokedexRunner, whose data set is limited by the number of Pokémon contained in the first-generation Pokédex (151), the LoadRunner can create
       # arbitrarily many entries, and the 'numEntriesPerMap' controls how many entries it will create
-      numEntriesPerMap: 50000
+      numEntriesPerMap: 5000
       # The payload for each of the <numEntriesPerMap> entries the LoadRunner creates is a random string, whose size in bytes is controlled by the 'payloadSizeBytes' property
       payloadSizeBytes: 100000
       # Same as for PokedexRunner
       appendMapIndexToMapName: true
       # Same as for PokedexRunner
-      appendClientIdToMapName: true
+      appendClientIdToMapName: false
       # Same as for PokedexRunner
       numRuns: 10000
       # Same as for PokedexRunner
