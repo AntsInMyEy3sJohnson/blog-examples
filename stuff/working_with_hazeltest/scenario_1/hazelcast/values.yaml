@@ -15,7 +15,7 @@ platform:
         metrics: 8080
       gracefulShutDown:
         maxWaitSeconds: 60
-      podResources:
+      containerResources:
         requests:
           cpu: "1"
           memory: "3G"
@@ -64,6 +64,7 @@ platform:
           backup-count: 1
           # Keep entries around for ten minutes
           max-idle-seconds: 600
+          in-memory-format: BINARY
 
 mancenter:
   deploy: true
