@@ -58,7 +58,7 @@ platform:
         # the other patterns such as to protect cluster from potentially misbehaving clients
         default:
           backup-count: 0
-          max-idle-seconds: 1
+          max-idle-seconds: 5
           in-memory-format: BINARY
         # Config for the Hazeltest maps
         ht_*:
@@ -68,7 +68,7 @@ platform:
           eviction:
             eviction-policy: LRU
             max-size-policy: FREE_HEAP_PERCENTAGE
-            size: 10
+            size: 15
 
 mancenter:
   deploy: true

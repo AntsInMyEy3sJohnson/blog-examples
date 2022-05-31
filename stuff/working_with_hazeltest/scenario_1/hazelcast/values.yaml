@@ -57,7 +57,7 @@ platform:
         # the other patterns such as to protect cluster from potentially misbehaving clients
         default:
           backup-count: 0
-          max-idle-seconds: 1
+          max-idle-seconds: 5
           in-memory-format: BINARY
         # Config for the Hazeltest maps
         ht_*:
