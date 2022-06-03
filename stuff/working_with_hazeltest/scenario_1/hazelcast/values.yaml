@@ -53,14 +53,14 @@ platform:
             enabled: true
             service-port: 5701
       map:
-        # Create very restrictive config for all map names not corresponding to one of 
-        # the other patterns such as to protect cluster from potentially misbehaving clients
-        default:
+      # Default configuration is pretty restrictive to protect cluster from misbehaving clients
+      default:
           backup-count: 0
+          # Map entries will be expired after 5 seconds of inactivity (neither read nor write)
           max-idle-seconds: 5
           in-memory-format: BINARY
-        # Config for the Hazeltest maps
-        ht_*:
+      # Assumption: A client application uses maps starting with `ht_`
+      ht_*:
           backup-count: 1
           # Keep entries around for ten minutes
           max-idle-seconds: 600
