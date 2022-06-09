@@ -1,4 +1,4 @@
-replicaCount: 1
+replicaCount: 3
 
 app:
   # 0.2.3
@@ -8,10 +8,10 @@ app:
   resources:
     requests: 
       cpu: "500m"
-      memory: "64M"
+      memory: "256M"
     limits:
       cpu: "1"
-      memory: "128M"
+      memory: "512M"
 
 env:
   # Name of the Hazelcast cluster to connect to -- usually configured in Hazelcast by means of the "hazelcast.cluster-name" property
@@ -66,9 +66,9 @@ config:
       numMaps: 10
       # In contrast to the PokedexRunner, whose data set is limited by the number of Pokémon contained in the first-generation Pokédex (151), the LoadRunner can create
       # arbitrarily many entries, and the 'numEntriesPerMap' controls how many entries it will create
-      numEntriesPerMap: 5000
+      numEntriesPerMap: 50
       # The payload for each of the <numEntriesPerMap> entries the LoadRunner creates is a random string, whose size in bytes is controlled by the 'payloadSizeBytes' property
-      payloadSizeBytes: 100000
+      payloadSizeBytes: 5000000
       # Same as for PokedexRunner
       appendMapIndexToMapName: false
       # Same as for PokedexRunner
