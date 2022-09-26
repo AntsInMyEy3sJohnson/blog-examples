@@ -72,7 +72,7 @@ platform:
           in-memory-format: BINARY
           eviction:
             eviction-policy: LRU
-            max-size-policy: FREE_HEAP_PERCENTAGE
+            max-size-policy: USED_HEAP_PERCENTAGE
             size: 15
         app2_*:
           backup-count: 2
@@ -80,7 +80,7 @@ platform:
           in-memory-format: BINARY
           eviction:
             eviction-policy: LRU
-            max-size-policy: FREE_HEAP_PERCENTAGE
+            max-size-policy: USED_HEAP_PERCENTAGE
             size: 15
       queue:
         # Restrictive default
