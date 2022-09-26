@@ -19,10 +19,10 @@ platform:
         maxWaitSeconds: 60
       containerResources:
         requests:
-          cpu: "8"
+          cpu: "2"
           memory: "4G"
         limits:
-          cpu: "8"
+          cpu: "4"
           memory: "4G"
       jvmResources:
         xmx: 3500m
