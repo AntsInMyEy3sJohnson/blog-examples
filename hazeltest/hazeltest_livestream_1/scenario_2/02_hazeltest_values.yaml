@@ -36,8 +36,8 @@ config:
     tweets:
       enabled: false
       numQueues: 5
-      appendQueueIndexToQueueName: true
-      appendClientIdToQueueName: true
+      appendQueueIndexToQueueName: false
+      appendClientIdToQueueName: false
       queuePrefix:
         enabled: true
         prefix: "app1_"
@@ -74,8 +74,8 @@ config:
       numQueues: 10
       numLoadEntries: 5000
       payloadSizeBytes: 5000
-      appendQueueIndexToQueueName: true
-      appendClientIdToQueueName: true
+      appendQueueIndexToQueueName: false
+      appendClientIdToQueueName: false
       queuePrefix:
         enabled: true
         prefix: "app1_"
