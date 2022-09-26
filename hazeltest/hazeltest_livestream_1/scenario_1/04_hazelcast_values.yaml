@@ -73,7 +73,7 @@ platform:
           eviction:
             eviction-policy: LRU
             max-size-policy: USED_HEAP_PERCENTAGE
-            size: 15
+            size: 80
         app2_*:
           backup-count: 2
           max-idle-seconds: 120
@@ -81,7 +81,7 @@ platform:
           eviction:
             eviction-policy: LRU
             max-size-policy: USED_HEAP_PERCENTAGE
-            size: 15
+            size: 80
       queue:
         # Restrictive default
         default:
