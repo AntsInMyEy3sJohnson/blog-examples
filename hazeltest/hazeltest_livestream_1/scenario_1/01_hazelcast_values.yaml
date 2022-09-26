@@ -62,7 +62,7 @@ platform:
           backup-count: 0
           max-idle-seconds: 30
           in-memory-format: BINARY
-        app1_*:
+        app1*:
           backup-count: 1
           max-idle-seconds: 600
           in-memory-format: BINARY
@@ -70,7 +70,7 @@ platform:
             eviction-policy: LRU
             max-size-policy: USED_HEAP_PERCENTAGE
             size: 80
-        app2_*:
+        app2*:
           backup-count: 2
           max-idle-seconds: 120
           in-memory-format: BINARY
@@ -84,11 +84,11 @@ platform:
           max-size: 10
           backup-count: 0
           empty-queue-ttl: 10
-        app1_*:
+        app1*:
           max-size: 10000
           backup-count: 1
           empty-queue-ttl: 120
-        app2_*:
+        app2*:
           max-size: 2000
           backup-count: 2
           empty-queue-ttl: 120
