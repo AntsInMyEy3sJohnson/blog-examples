@@ -1,3 +1,4 @@
+# Deploy this as "hazeltest-app1"
 replicaCount: 2
 
 image:

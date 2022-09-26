@@ -1,3 +1,4 @@
+# Deploy this as "hazeltest-app2"
 replicaCount: 3
 
 image:
@@ -40,7 +41,7 @@ config:
       appendClientIdToQueueName: false
       queuePrefix:
         enabled: true
-        prefix: "app1_"
+        prefix: "app2_"
       putConfig:
         enabled: true
         numRuns: 500
@@ -78,7 +79,7 @@ config:
       appendClientIdToQueueName: false
       queuePrefix:
         enabled: true
-        prefix: "app1_"
+        prefix: "app2_"
       putConfig:
         enabled: true
         numRuns: 500
