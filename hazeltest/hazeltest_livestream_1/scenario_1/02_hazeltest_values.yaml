@@ -118,7 +118,7 @@ config:
       numRuns: 10000
       mapPrefix:
         enabled: true
-        prefix: "app1_"
+        prefix: "app_1_"
       sleeps:
         betweenActionBatches:
           enabled: true
