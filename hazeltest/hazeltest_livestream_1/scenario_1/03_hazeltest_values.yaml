@@ -1,5 +1,5 @@
 # Deploy this as "hazeltest-app2"
-replicaCount: 3
+replicaCount: 2
 
 image:
   registry: docker.io
@@ -128,7 +128,7 @@ config:
           durationMs: 5000
     load:
       enabled: true
-      numMaps: 5
+      numMaps: 10
       numEntriesPerMap: 5000
       payloadSizeBytes: 1000000
       appendMapIndexToMapName: false
