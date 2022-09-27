@@ -35,7 +35,7 @@ config:
   # For documentation on these properties, please refer to <repo root>/client/config/defaultConfig.yaml
   queuetests:
     tweets:
-      enabled: true
+      enabled: false
       numQueues: 5
       appendQueueIndexToQueueName: false
       appendClientIdToQueueName: false
@@ -71,7 +71,7 @@ config:
             enabled: true
             durationMs: 5000
     load:
-      enabled: true
+      enabled: false
       numQueues: 10
       numLoadEntries: 5000
       payloadSizeBytes: 5000
