@@ -79,7 +79,6 @@ platform:
             max-size-policy: USED_HEAP_PERCENTAGE
             size: 80
       queue:
-        # Restrictive default
         default:
           max-size: 10
           backup-count: 0
