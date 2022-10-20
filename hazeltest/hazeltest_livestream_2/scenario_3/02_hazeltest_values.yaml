@@ -1,4 +1,4 @@
-replicaCount: 100
+replicaCount: 80
 
 image:
   registry: docker.io
@@ -12,10 +12,10 @@ httpPort: 8080
 resources:
   requests:
     cpu: "100m"
-    memory: "128Mi"
+    memory: "32Mi"
   limits:
     cpu: "200m"
-    memory: "256Mi"
+    memory: "64Mi"
 
 startupArgs:
   - "-config-file=/data/config/custom-config.yaml"
@@ -31,19 +31,19 @@ env:
   logLevel: INFO
 
 config:
-  # For documentation on these properties, please refer to <repo root>/client/config/defaultConfig.yaml
+  # For documentation on these properties, please refer to <repo root>/client/defaultConfig.yaml
   queuetests:
     tweets:
       enabled: true
-      numQueues: 20
+      numQueues: 10
       appendQueueIndexToQueueName: true
       appendClientIdToQueueName: true
       queuePrefix:
         enabled: true
-        prefix: "app1_"
+        prefix: "ht_"
       putConfig:
         enabled: true
-        numRuns: 500
+        numRuns: 10000
         batchSize: 50
         sleeps:
           initialDelay:
@@ -51,13 +51,13 @@ config:
             durationMs: 2000
           betweenActionBatches:
             enabled: true
-            durationMs: 2000
+            durationMs: 1000
           betweenRuns:
             enabled: true
-            durationMs: 5000
+            durationMs: 2000
       pollConfig:
         enabled: true
-        numRuns: 500
+        numRuns: 10000
         batchSize: 50
         sleeps:
           initialDelay:
@@ -65,23 +65,23 @@ config:
             durationMs: 2000
           betweenActionBatches:
             enabled: true
-            durationMs: 2000
+            durationMs: 1000
           betweenRuns:
             enabled: true
-            durationMs: 5000
+            durationMs: 2000
     load:
       enabled: true
-      numQueues: 20
-      numLoadEntries: 50
-      payloadSizeBytes: 10
+      numQueues: 10
+      numLoadEntries: 5000
+      payloadSizeBytes: 100
       appendQueueIndexToQueueName: true
       appendClientIdToQueueName: true
       queuePrefix:
         enabled: true
-        prefix: "app1_"
+        prefix: "ht_"
       putConfig:
         enabled: true
-        numRuns: 500
+        numRuns: 10000
         batchSize: 50
         sleeps:
           initialDelay:
@@ -89,13 +89,13 @@ config:
             durationMs: 2000
           betweenActionBatches:
             enabled: true
-            durationMs: 1000
+            durationMs: 1333
           betweenRuns:
             enabled: true
-            durationMs: 3500
+            durationMs: 870
       pollConfig:
         enabled: true
-        numRuns: 500
+        numRuns: 10000
         batchSize: 50
         sleeps:
           initialDelay:
@@ -103,10 +103,10 @@ config:
             durationMs: 2000
           betweenActionBatches:
             enabled: true
-            durationMs: 1000
+            durationMs: 1333
           betweenRuns:
             enabled: true
-            durationMs: 3500
+            durationMs: 870
 
   maptests:
     pokedex:
@@ -117,29 +117,29 @@ config:
       numRuns: 10000
       mapPrefix:
         enabled: true
-        prefix: "app1_"
+        prefix: "ht_"
       sleeps:
         betweenActionBatches:
           enabled: true
-          durationMs: 3000
+          durationMs: 500
         betweenRuns:
           enabled: true
-          durationMs: 5000
+          durationMs: 1000
     load:
       enabled: true
       numMaps: 20
-      numEntriesPerMap: 50
-      payloadSizeBytes: 10
+      numEntriesPerMap: 50000
+      payloadSizeBytes: 100000
       appendMapIndexToMapName: true
       appendClientIdToMapName: true
       numRuns: 10000
       mapPrefix:
         enabled: true
-        prefix: "app1_"
+        prefix: "ht_"
       sleeps:
         betweenActionBatches:
           enabled: true
           durationMs: 200
         betweenRuns:
           enabled: true
-          durationMs: 200
+          durationMs: 1300
