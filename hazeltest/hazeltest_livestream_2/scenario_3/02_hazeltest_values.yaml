@@ -4,8 +4,8 @@ image:
   registry: docker.io
   organization: antsinmyey3sjohnson
   repository: hazeltest
-  # 0.5.4
-  digest: 2c7bd81af6fdff80fe6f8ad46aa41ec52012ac748628d24dd9132117beccd98a
+  # 0.7.0
+  digest: 9f2ab556c5c31e5e60ff84cbd6a107922c3a3be2c1cace4825af78347f14d4d6
   pullPolicy: IfNotPresent
 
 httpPort: 8080
@@ -49,12 +49,15 @@ config:
           initialDelay:
             enabled: false
             durationMs: 2000
+            enableRandomness: false
           betweenActionBatches:
             enabled: true
             durationMs: 1000
+            enableRandomness: true
           betweenRuns:
             enabled: true
             durationMs: 2000
+            enableRandomness: true
       pollConfig:
         enabled: true
         numRuns: 10000
@@ -63,12 +66,15 @@ config:
           initialDelay:
             enabled: true
             durationMs: 2000
+            enableRandomness: false
           betweenActionBatches:
             enabled: true
             durationMs: 1000
+            enableRandomness: true
           betweenRuns:
             enabled: true
             durationMs: 2000
+            enableRandomness: true
     load:
       enabled: true
       numQueues: 10
@@ -87,12 +93,15 @@ config:
           initialDelay:
             enabled: false
             durationMs: 2000
+            enableRandomness: false
           betweenActionBatches:
             enabled: true
-            durationMs: 1333
+            durationMs: 1200
+            enableRandomness: true
           betweenRuns:
             enabled: true
-            durationMs: 870
+            durationMs: 900
+            enableRandomness: true
       pollConfig:
         enabled: true
         numRuns: 10000
@@ -101,12 +110,15 @@ config:
           initialDelay:
             enabled: true
             durationMs: 2000
+            enableRandomness: false
           betweenActionBatches:
             enabled: true
-            durationMs: 1333
+            durationMs: 1400
+            enableRandomness: true
           betweenRuns:
             enabled: true
-            durationMs: 870
+            durationMs: 850
+            enableRandomness: true
 
   maptests:
     pokedex:
@@ -122,9 +134,11 @@ config:
         betweenActionBatches:
           enabled: true
           durationMs: 500
+          enableRandomness: true
         betweenRuns:
           enabled: true
           durationMs: 1000
+          enableRandomness: true
     load:
       enabled: true
       numMaps: 20
@@ -140,6 +154,8 @@ config:
         betweenActionBatches:
           enabled: true
           durationMs: 200
+          enableRandomness: true
         betweenRuns:
           enabled: true
           durationMs: 1300
+          enableRandomness: true
