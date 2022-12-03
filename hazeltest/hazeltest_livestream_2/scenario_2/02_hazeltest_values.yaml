@@ -49,7 +49,7 @@ config:
           initialDelay:
             enabled: false
             durationMs: 2000
-            enableRandomness: true
+            enableRandomness: false
           betweenActionBatches:
             enabled: true
             durationMs: 2000
@@ -66,7 +66,7 @@ config:
           initialDelay:
             enabled: true
             durationMs: 12500
-            enableRandomness: true
+            enableRandomness: false
           betweenActionBatches:
             enabled: true
             durationMs: 2000
@@ -93,7 +93,7 @@ config:
           initialDelay:
             enabled: false
             durationMs: 2000
-            enableRandomness: true
+            enableRandomness: false
           betweenActionBatches:
             enabled: true
             durationMs: 1000
@@ -110,7 +110,7 @@ config:
           initialDelay:
             enabled: true
             durationMs: 20000
-            enableRandomness: true
+            enableRandomness: false
           betweenActionBatches:
             enabled: true
             durationMs: 1000
