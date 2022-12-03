@@ -75,7 +75,7 @@ platform:
           eviction:
             eviction-policy: LRU
             max-size-policy: FREE_HEAP_PERCENTAGE
-            size: 15
+            size: 25
       queue:
         # Restrictive default
         default:
@@ -84,7 +84,7 @@ platform:
           empty-queue-ttl: 10
         # Config for Hazeltest queues
         ht_*:
-          max-size: 10000
+          max-size: 1000
           backup-count: 1
           empty-queue-ttl: 120
 
