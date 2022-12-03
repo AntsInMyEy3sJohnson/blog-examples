@@ -35,9 +35,6 @@ platform:
     hazelcast:
       metrics:
         enabled: true
-        # Default is 5 -- by setting this to a higher value, one can decrease load on the Management Center
-        # because it will receive fewer data points to work with
-        collection-frequency-seconds: 60
       jet:
         enabled: true
       cluster-name: "hazelcastplatform"
@@ -115,7 +112,7 @@ mancenter:
     resources:
       requests:
         cpu: "2"
-        memory: "20G"
+        memory: "16G"
       limits:
         cpu: "4"
-        memory: "20G"
+        memory: "16G"
