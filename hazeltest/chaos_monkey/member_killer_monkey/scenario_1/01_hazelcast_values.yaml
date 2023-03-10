@@ -67,7 +67,7 @@ platform:
             size: 50
         ht_*:
           backup-count: 1
-          read-backup-date: true
+          read-backup-data: true
           max-idle-seconds: 600
           in-memory-format: BINARY
           eviction:
