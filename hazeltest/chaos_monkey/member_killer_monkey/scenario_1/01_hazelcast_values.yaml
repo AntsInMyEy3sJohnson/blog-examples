@@ -73,6 +73,14 @@ platform:
             eviction-policy: LRU
             max-size-policy: FREE_HEAP_PERCENTAGE
             size: 15
+        ht_no_backup_*:
+          backup-count: 0
+          max-idle-seconds: 600
+          in-memory-format: BINARY
+          eviction:
+            eviction-policy: LRU
+            max-size-policy: FREE_HEAP_PERCENTAGE
+            size: 15
       queue:
         default:
           max-size: 10
