@@ -14,7 +14,7 @@ platform:
         member: 5701
         metrics: 8080
       gracefulShutDown:
-        maxWaitSeconds: 60
+        maxWaitSeconds: 600
       containerResources:
         requests:
           cpu: "2"
