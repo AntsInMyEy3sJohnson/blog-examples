@@ -75,11 +75,11 @@ config:
         prefix: "ht_no_backup_"
       sleeps:
         betweenActionBatches:
-          enabled: true
+          enabled: false
           durationMs: 500
           enableRandomness: true
         betweenRuns:
-          enabled: true
+          enabled: false
           durationMs: 1000
           enableRandomness: true
     load:
