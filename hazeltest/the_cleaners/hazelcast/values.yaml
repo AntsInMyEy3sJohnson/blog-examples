@@ -1,0 +1,179 @@
+platform:
+  deploy: true
+  nodeSelectors:
+    enable: false
+    selectors: { }
+  service:
+    type: NodePort
+    port: 5701
+    nodePort: 30080
+  cluster:
+    prometheusScrape:
+      enable: true
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "8080"
+    logging:
+      level: INFO
+    features:
+      prometheusExport:
+        # Will use '(...).cluster.members.ports.metrics' to expose member metrics via Prometheus exporter
+        enable: true
+    members:
+      edition:
+        community:
+          image: hazelcast/hazelcast:5.3.6
+        enterprise:
+          # Whether to use the enterprise version of Hazelcast Platform. If enabled, the name of the Kubernetes Secret
+          # containing the enterprise license key has to be specified, too, see below.
+          enable: false
+          # Caution: Hazelcast Platform embodies the difference between editions in the image itself. Therefore, image
+          # configuration is separated here into 'enterprise.image' and 'community.image'. (In contrast to that, the
+          # Hazelcast Management Center uses one image you may supply an enterprise license to, hence for the Management
+          # Center down below, the image property appears only once).
+          image: hazelcast/hazelcast-enterprise:5.3.6
+          license:
+            # The name of the Kubernetes Secret containing the license key for
+            # the enterprise version of Hazelcast Platform.
+            secretName: hazelcast-enterprise-license
+            # The name of the property beneath the Secret's 'data' element that holds the license key.
+            keyPath: licenseKey
+      imagePullPolicy: IfNotPresent
+      count: 2
+      ports:
+        member: 5701
+        metrics: 8080
+      gracefulShutDown:
+        maxWaitSeconds: 60
+      containerResources:
+        requests:
+          cpu: "1"
+          memory: "2G"
+        limits:
+          cpu: "1"
+          memory: "2G"
+      jvmResources:
+        xmx: 1600m
+        xms: 1600m
+      liveness:
+        initialDelaySeconds: 15
+        periodSeconds: 10
+      readiness:
+        initialDelaySeconds: 30
+        periodSeconds: 10
+  config:
+    hazelcast:
+      metrics:
+        enabled: true
+        # Default is 5 -- by setting this to a higher value, one can decrease load on the Management Center
+        # because it will receive fewer data points to work with
+        collection-frequency-seconds: 5
+      jet:
+        enabled: true
+      cluster-name: "hazelcastplatform"
+      properties:
+        hazelcast.heartbeat.interval.seconds: 10
+        hazelcast.jmx: true
+        hazelcast.logging.type: log4j2
+      network:
+        rest-api:
+          enabled: true
+          endpoint-groups:
+            HEALTH_CHECK:
+              enabled: true
+        join:
+          multicast:
+            enabled: false
+          kubernetes:
+            enabled: true
+            service-port: 5701
+      # https://github.com/hazelcast/hazelcast/blob/master/hazelcast/src/main/resources/hazelcast-full-example.yaml
+      map:
+        # Create very restrictive config for all map names not corresponding to one of
+        # the other patterns such as to protect cluster from potentially misbehaving clients
+        default:
+          backup-count: 0
+          max-idle-seconds: 5
+          in-memory-format: BINARY
+          eviction:
+            eviction-policy: LRU
+            max-size-policy: FREE_HEAP_PERCENTAGE
+            size: 50
+        # Config for the Hazeltest maps
+        ht_*:
+          backup-count: 1
+          # Keep entries around for ten minutes
+          max-idle-seconds: 600
+          in-memory-format: BINARY
+          eviction:
+            eviction-policy: LRU
+            max-size-policy: FREE_HEAP_PERCENTAGE
+            size: 15
+      queue:
+        # Restrictive default
+        default:
+          max-size: 10
+          backup-count: 0
+          empty-queue-ttl: 10
+        # Config for Hazeltest queues
+        ht_*:
+          max-size: 10000
+          backup-count: 1
+          empty-queue-ttl: 120
+
+mancenter:
+  nodeSelectors:
+    enable: false
+    selectors: { }
+  deploy: true
+  reachability:
+    service:
+      deploy: true
+      type: ClusterIP
+      port: 8080
+    ingress:
+      deploy: true
+      port: 8080
+      hostName: hazelcastmanagementcenter.thelittlevmthatcould.local
+  instance:
+    image: hazelcast/management-center:5.3.3
+    # Enables injection of enterprise license.
+    # Please note that, in case of the Management Center, there is no distinction between the community and the
+    # enterprise edition as far as the image is concerned, hence there is no dedicated image property.
+    enterprise:
+      # Whether to upgrade this Management Center instance to the enterprise version by injecting a secret into the
+      # Pod. If set to 'true', then the name of the Kubernetes Secret containing the enterprise license
+      # key has to be specified, too.
+      enable: false
+      license:
+        # The name of the Kubernetes Secret containing the license key for
+        # the enterprise version of Management Center.
+        secretName: hazelcast-enterprise-license
+        # The name of the property beneath the Secret's 'data' element that holds the license key.
+        keyPath: licenseKey
+    imagePullPolicy: IfNotPresent
+    prometheusScrape:
+      enable: false
+      path: /metrics
+      port: 8080
+    # 'enabled' vs. 'enable' is not a typo, those properties are actually called like so
+    javaOpts: "-Dhazelcast.mc.metrics.persistence.enabled=false -Dhazelcast.mc.healthCheck.enable=true"
+    ports:
+      web:
+        name: web
+        port: 8080
+      health:
+        name: health
+        port: 8081
+    liveness:
+      path: /health
+    readiness:
+      path: /health
+    resources:
+      requests:
+        cpu: "500m"
+        memory: "1G"
+      limits:
+        cpu: "1"
+        memory: "2G"

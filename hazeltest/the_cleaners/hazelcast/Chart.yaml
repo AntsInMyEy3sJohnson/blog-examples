@@ -1,0 +1,14 @@
+apiVersion: v2
+name: hazelcastimdg
+description: A Helm chart for deploying a simple Hazelcast cluster on Kubernetes.
+
+type: application
+
+version: 2.1.0
+
+# Version of Hazelcast Platform used in this chart
+appVersion: "5.3.6"
+
+# Useful commands: 
+# helm upgrade --install hazelcastwithmancenter ./hazelcastwithmancenter --namespace=hazelcastplatform --create-namespace
+# helm uninstall hazelcastwithmancenter --namespace=hazelcastplatform
