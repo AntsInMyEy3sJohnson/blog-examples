@@ -44,6 +44,9 @@ reachability:
     port: 8080
 
 config:
+  chaosMonkeys:
+    memberKiller:
+      enabled: false
   stateCleaner:
     maps:
       enabled: false
