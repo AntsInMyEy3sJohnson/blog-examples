@@ -63,7 +63,7 @@ config:
       numMaps: 25
       appendMapIndexToMapName: true
       appendClientIdToMapName: true
-      evictMapsPriorToRun: true
+      evictMapsPriorToRun: false
       mapPrefix:
         enabled: true
         prefix: "ht_"
