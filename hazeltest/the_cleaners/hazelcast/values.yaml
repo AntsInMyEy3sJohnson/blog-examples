@@ -133,7 +133,7 @@ mancenter:
       type: ClusterIP
       port: 8080
     ingress:
-      deploy: true
+      deploy: false
       port: 8080
       hostName: hazelcastmanagementcenter.thelittlevmthatcould.local
   instance:
