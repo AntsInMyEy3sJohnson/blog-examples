@@ -60,9 +60,9 @@ config:
   mapTests:
     pokedex:
       enabled: true
-      numMaps: 25
+      numMaps: 1
       appendMapIndexToMapName: true
-      appendClientIdToMapName: true
+      appendClientIdToMapName: false
       evictMapsPriorToRun: false
       mapPrefix:
         enabled: true
