@@ -1,0 +1,40 @@
+padogridWithGrafana:
+  instance:
+    image: antsinmyey3sjohnson/padogrid-hazelmon:0.9.32.0@sha256:21ec577063d48c4720d05a6171c1041784691e3a10763c9f1b16f6fd80147984
+    imagePullPolicy: IfNotPresent
+    liveness:
+      path: /api/health
+      port: 3000
+    readiness:
+      path: /api/health
+      port: 3000
+    ports:
+      web:
+        name: grafana-web
+        port: 3000
+    resources:
+      requests:
+        cpu: 1
+        memory: 500Mi
+      limits:
+        cpu: 2
+        memory: 1Gi
+  config:
+    padoEnv:
+      - name: PADO_MONITORING_HAZELCAST_METRICS_LABEL
+        value: "namespace"
+      - name: PADO_MONITORING_PROMETHEUS_URL
+        # Implies the PadoGrid Pod will reside in one namespace with the Prometheus Pod -- adjust to FQDN if different namespaces
+        value: "http://prometheus:9090"
+  reachability:
+    service:
+      deploy: true
+      name: grafana-web
+      type: ClusterIP
+      port: 3000
+    ingress:
+      deploy: true
+      port: 8080
+      hostName: padogridhazelmon.thelittlevmthatcould.local
+
+

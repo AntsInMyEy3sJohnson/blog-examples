@@ -60,12 +60,28 @@ config:
   mapTests:
     pokedex:
       enabled: true
-      numMaps: 1
+      numMaps: 100
       appendMapIndexToMapName: true
       appendClientIdToMapName: true
       evictMapsPriorToRun: false
       mapPrefix:
         enabled: true
         prefix: "ht_"
+      testLoop:
+        type: boundary
+        boundary:
+          sleeps:
+            betweenOperationChains:
+              enabled: true
+              durationMs: 5000
+              enableRandomness: true
+            afterChainAction:
+              enabled: true
+              durationMs: 1000
+              enableRandomness: false
+            uponModeChange:
+              enabled: true
+              durationMs: 15000
+              enableRandomness: false
     load:
       enabled: false
