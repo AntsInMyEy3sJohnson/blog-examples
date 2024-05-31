@@ -1,0 +1,71 @@
+replicaCount: 1
+
+image:
+  registry: docker.io
+  organization: antsinmyey3sjohnson
+  repository: hazeltest
+  tag: 0.14.0
+  digest: 2a0597f7d52eb4aa2dd99bb9b11aa70e3c4cadbd95cf1a1493e50ad9f8fe42a7
+  pullPolicy: IfNotPresent
+
+resources:
+  requests:
+    cpu: "200m"
+    memory: "100Mi"
+  limits:
+    cpu: "400m"
+    memory: "200Mi"
+
+startupArgs:
+  - "-config-file=/data/config/custom-config.yaml"
+  - "-use-unisocket-client=false"
+
+env:
+  # Name of the Hazelcast cluster to connect to -- usually configured in Hazelcast by means of the "hazelcast.cluster-name" property
+  hzCluster: "hazelcastplatform"
+  # Can be IP addresses or Kubernetes services names
+  # Accepts multiple comma-separated values ("service1,service2,service3")
+  hzMembers: "hazelcastimdg"
+  # Set this to TRACE if you want to make the people running your IT department's logging platform very upset
+  logLevel: INFO
+
+features:
+  # Only set this to false if no chaos monkey runs with the 'k8sInCluster' hazelcast member access mode
+  # (The reason the template doesn't evaluate this directly is because a user might rely on one of the
+  # built-in config files to configure chaos monkeys and not provide a custom config in this yaml file)
+  useDeletePodsServiceAccount: true
+  useSccOnOpenShift: false
+
+reachability:
+  containerPort: 8080
+  service:
+    deploy: true
+    type: ClusterIP
+    port: 8080
+
+config:
+  chaosMonkeys:
+    memberKiller:
+      enabled: false
+  stateCleaner:
+    maps:
+      enabled: false
+    queues:
+      enabled: false
+  queueTests:
+    tweets:
+      enabled: false
+    load:
+      enabled: false
+  mapTests:
+    pokedex:
+      enabled: true
+      numMaps: 1
+      appendMapIndexToMapName: true
+      appendClientIdToMapName: true
+      evictMapsPriorToRun: false
+      mapPrefix:
+        enabled: true
+        prefix: "ht_"
+    load:
+      enabled: false
