@@ -77,8 +77,8 @@ config:
               enableRandomness: true
             afterChainAction:
               enabled: true
-              durationMs: 1000
-              enableRandomness: false
+              durationMs: 2000
+              enableRandomness: true
             uponModeChange:
               enabled: true
               durationMs: 15000
