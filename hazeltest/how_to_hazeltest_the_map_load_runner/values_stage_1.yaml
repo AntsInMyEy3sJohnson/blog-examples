@@ -72,7 +72,7 @@ config:
         enableRandomness: true
   stateCleaners:
     maps:
-      enabled: false
+      enabled: true
       cleanMode: destroy
       errorBehavior: ignore
       prefix:

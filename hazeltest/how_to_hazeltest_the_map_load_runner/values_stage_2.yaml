@@ -72,7 +72,7 @@ config:
         enableRandomness: true
   stateCleaners:
     maps:
-      enabled: false
+      enabled: true
       cleanMode: destroy
       errorBehavior: ignore
       prefix:
@@ -302,8 +302,8 @@ config:
             boundaryDefinition:
               upper:
                 mapFillPercentage: 0.9
-                enableRandomness: true
+                enableRandomness: false
               lower:
                 mapFillPercentage: 0.1
-                enableRandomness: true
+                enableRandomness: false
               actionTowardsBoundaryProbability: 0.9
