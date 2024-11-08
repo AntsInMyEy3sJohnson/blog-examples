@@ -1,4 +1,4 @@
-replicaCount: 1
+replicaCount: 50
 
 image:
   registry: docker.io
@@ -10,11 +10,11 @@ image:
 
 resources:
   requests:
-    cpu: "200m"
-    memory: "250Mi"
-  limits:
-    cpu: "400m"
+    cpu: "1"
     memory: "500Mi"
+  limits:
+    cpu: "2"
+    memory: "1Gi"
 
 startupArgs:
   - "-config-file=/data/config/custom-config.yaml"
@@ -241,17 +241,17 @@ config:
               actionTowardsBoundaryProbability: 0.69
     load:
       enabled: true
-      numMaps: 10
-      numEntriesPerMap: 1000
+      numMaps: 100
+      numEntriesPerMap: 20000
       appendMapIndexToMapName: true
-      appendClientIdToMapName: false
+      appendClientIdToMapName: true
       numRuns: 10000
       payload:
         fixedSize:
-          enabled: true
+          enabled: false
           sizeBytes: 100
         variableSize:
-          enabled: false
+          enabled: true
           lowerBoundaryBytes: 1000
           upperBoundaryBytes: 10000
           evaluateNewSizeAfterNumWriteActions: 100
@@ -289,7 +289,7 @@ config:
               durationMs: 1000
               enableRandomness: true
             afterChainAction:
-              enabled: true
+              enabled: false
               durationMs: 50
               enableRandomness: true
             uponModeChange:
