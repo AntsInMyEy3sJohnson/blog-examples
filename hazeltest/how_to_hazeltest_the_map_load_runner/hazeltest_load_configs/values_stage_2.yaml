@@ -10,11 +10,11 @@ image:
 
 resources:
   requests:
-    cpu: "200m"
-    memory: "250Mi"
-  limits:
-    cpu: "400m"
+    cpu: "1"
     memory: "500Mi"
+  limits:
+    cpu: "2"
+    memory: "1Gi"
 
 startupArgs:
   - "-config-file=/data/config/custom-config.yaml"
@@ -242,14 +242,14 @@ config:
     load:
       enabled: true
       numMaps: 10
-      numEntriesPerMap: 1000
+      numEntriesPerMap: 1000000
       appendMapIndexToMapName: true
       appendClientIdToMapName: false
       numRuns: 10000
       payload:
         fixedSize:
           enabled: true
-          sizeBytes: 100
+          sizeBytes: 12000
         variableSize:
           enabled: false
           lowerBoundaryBytes: 1000
@@ -271,11 +271,11 @@ config:
           durationMs: 2000
           enableRandomness: true
       testLoop:
-        type: boundary
+        type: batch
         batch:
           sleeps:
             afterBatchAction:
-              enabled: true
+              enabled: false
               durationMs: 50
               enableRandomness: false
             betweenActionBatches:
@@ -302,8 +302,8 @@ config:
             boundaryDefinition:
               upper:
                 mapFillPercentage: 0.9
-                enableRandomness: false
+                enableRandomness: true
               lower:
                 mapFillPercentage: 0.1
-                enableRandomness: false
+                enableRandomness: true
               actionTowardsBoundaryProbability: 0.9
