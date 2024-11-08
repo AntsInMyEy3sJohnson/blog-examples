@@ -10,10 +10,10 @@ image:
 
 resources:
   requests:
-    cpu: "500m"
+    cpu: "1"
     memory: "500Mi"
   limits:
-    cpu: "1"
+    cpu: "2"
     memory: "1Gi"
 
 startupArgs:
