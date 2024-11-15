@@ -11,10 +11,10 @@ image:
 resources:
   requests:
     cpu: "1"
-    memory: "500Mi"
+    memory: "250Mi"
   limits:
     cpu: "2"
-    memory: "1Gi"
+    memory: "500Mi"
 
 startupArgs:
   - "-config-file=/data/config/custom-config.yaml"
