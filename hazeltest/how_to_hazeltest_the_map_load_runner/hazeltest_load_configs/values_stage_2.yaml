@@ -242,6 +242,7 @@ config:
     load:
       enabled: true
       numMaps: 10
+      # Difference to stage 1: load dimension 1 (number of items)
       numEntriesPerMap: 1000000
       appendMapIndexToMapName: true
       appendClientIdToMapName: false
@@ -249,6 +250,7 @@ config:
       payload:
         fixedSize:
           enabled: true
+          # Difference to stage 1: load dimension 2 (item size)
           sizeBytes: 12000
         variableSize:
           enabled: false
@@ -275,6 +277,7 @@ config:
         batch:
           sleeps:
             afterBatchAction:
+              # Difference to stage 1: load dimension 6 (operations per second)
               enabled: false
               durationMs: 50
               enableRandomness: false
@@ -289,7 +292,7 @@ config:
               durationMs: 1000
               enableRandomness: true
             afterChainAction:
-              enabled: true
+              enabled: false
               durationMs: 50
               enableRandomness: true
             uponModeChange:
@@ -302,8 +305,8 @@ config:
             boundaryDefinition:
               upper:
                 mapFillPercentage: 0.9
-                enableRandomness: true
+                enableRandomness: false
               lower:
                 mapFillPercentage: 0.1
-                enableRandomness: true
+                enableRandomness: false
               actionTowardsBoundaryProbability: 0.9

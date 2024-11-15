@@ -10,11 +10,11 @@ image:
 
 resources:
   requests:
-    cpu: "200m"
-    memory: "250Mi"
-  limits:
-    cpu: "400m"
+    cpu: "1"
     memory: "500Mi"
+  limits:
+    cpu: "2"
+    memory: "1Gi"
 
 startupArgs:
   - "-config-file=/data/config/custom-config.yaml"
@@ -241,7 +241,9 @@ config:
               actionTowardsBoundaryProbability: 0.69
     load:
       enabled: true
+      # Difference to stage 2: load dimension 3 (number of data structures)
       numMaps: 100
+      # Difference to stage 2: load dimension 1 (number of items)
       numEntriesPerMap: 1000
       appendMapIndexToMapName: true
       appendClientIdToMapName: false
@@ -251,6 +253,7 @@ config:
           enabled: false
           sizeBytes: 100
         variableSize:
+          # Difference to stage 2: load dimension 2 (item size)
           enabled: true
           lowerBoundaryBytes: 100
           upperBoundaryBytes: 15000
@@ -271,11 +274,13 @@ config:
           durationMs: 2000
           enableRandomness: true
       testLoop:
+        # Difference to stage 2: load dimension 6 (operations per second)
+        # Implicit!
         type: boundary
         batch:
           sleeps:
             afterBatchAction:
-              enabled: true
+              enabled: false
               durationMs: 50
               enableRandomness: false
             betweenActionBatches:

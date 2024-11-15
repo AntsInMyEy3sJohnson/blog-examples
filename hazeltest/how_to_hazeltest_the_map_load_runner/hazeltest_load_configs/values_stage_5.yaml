@@ -10,11 +10,11 @@ image:
 
 resources:
   requests:
-    cpu: "200m"
-    memory: "250Mi"
-  limits:
-    cpu: "400m"
+    cpu: "1"
     memory: "500Mi"
+  limits:
+    cpu: "2"
+    memory: "1Gi"
 
 startupArgs:
   - "-config-file=/data/config/custom-config.yaml"
@@ -244,6 +244,7 @@ config:
       numMaps: 100
       numEntriesPerMap: 50000
       appendMapIndexToMapName: true
+      # Difference to stage 4: load dimension 3 (number of data structures)
       appendClientIdToMapName: true
       numRuns: 10000
       payload:

@@ -1,3 +1,4 @@
+# Difference to stage 3: load dimension 4 (number of clients)
 replicaCount: 50
 
 image:
@@ -10,11 +11,11 @@ image:
 
 resources:
   requests:
-    cpu: "200m"
-    memory: "250Mi"
-  limits:
-    cpu: "400m"
+    cpu: "1"
     memory: "500Mi"
+  limits:
+    cpu: "2"
+    memory: "1Gi"
 
 startupArgs:
   - "-config-file=/data/config/custom-config.yaml"
@@ -242,6 +243,7 @@ config:
     load:
       enabled: true
       numMaps: 100
+      # Difference to stage 3: load dimension 1 (number of items)
       numEntriesPerMap: 50000
       appendMapIndexToMapName: true
       appendClientIdToMapName: false
@@ -275,7 +277,7 @@ config:
         batch:
           sleeps:
             afterBatchAction:
-              enabled: true
+              enabled: false
               durationMs: 50
               enableRandomness: false
             betweenActionBatches:
