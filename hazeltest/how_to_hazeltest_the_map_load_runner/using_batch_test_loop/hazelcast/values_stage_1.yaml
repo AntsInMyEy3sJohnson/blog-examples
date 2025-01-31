@@ -1,0 +1,22 @@
+platform:
+  cluster:
+    members:
+      containerResources:
+        requests:
+          cpu: "8"
+          memory: "20G"
+        limits:
+          cpu: "8"
+          memory: "20G"
+      jvmResources:
+        xmx: 6400m
+        xms: 6400m
+  config:
+    nativeMemory:
+      enabled: true
+      size:
+        unit: GIGABYTES
+        value: 12
+      min-block-size: 16
+      page-size: 16777216
+      metadata-space-percentage: 12.5
