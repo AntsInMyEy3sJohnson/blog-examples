@@ -1,0 +1,46 @@
+resources:
+  requests:
+    cpu: "1"
+  limits:
+    cpu: "2"
+config:
+  chaosMonkeys:
+    memberKiller:
+      enabled: false
+  stateCleaners:
+    queues:
+      enabled: false
+  queueTests:
+    tweets:
+      enabled: false
+    load:
+      enabled: false
+  mapTests:
+    pokedex:
+      enabled: false
+    load:
+      enabled: true
+      # Goal: Exhaust 36gb of memory as quickly as possible
+      # 10 maps --> Each map needs to write 3,6gb --> 36.000mb or 36.000.000kb
+      # Item size: 1.2kb
+      # Items per map: 3000000
+      # But: "ht_" pattern configured with 1 backup --> We need to occupy only
+      # half of 36gb with primary entries --> items per map: 15000000
+      numMaps: 10
+      numEntriesPerMap: 15000000
+      numRuns: 1
+      payload:
+        fixedSize:
+          enabled: true
+          sizeBytes: 1200
+      mapPrefix:
+        enabled: true
+        prefix: "ht_"
+      testLoop:
+        type: batch
+        batch:
+          sleeps:
+            afterBatchAction:
+              enabled: false
+            afterActionBatch:
+              enabled: false
