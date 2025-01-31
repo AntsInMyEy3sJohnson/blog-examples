@@ -33,6 +33,7 @@ config:
         fixedSize:
           enabled: true
           sizeBytes: 1200
+        variableSize: false
       mapPrefix:
         enabled: true
         prefix: "ht_"
