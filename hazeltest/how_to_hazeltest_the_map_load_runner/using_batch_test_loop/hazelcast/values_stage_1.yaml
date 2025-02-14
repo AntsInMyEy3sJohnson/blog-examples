@@ -16,7 +16,7 @@ platform:
       enabled: true
       size:
         unit: GIGABYTES
-        value: 12
+        value: 16
       min-block-size: 16
       page-size: 16777216
       metadata-space-percentage: 12.5
