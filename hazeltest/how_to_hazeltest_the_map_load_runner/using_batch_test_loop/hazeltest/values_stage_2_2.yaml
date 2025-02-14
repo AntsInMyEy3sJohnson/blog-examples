@@ -28,6 +28,7 @@ config:
       enabled: true
       numMaps: 30
       numEntriesPerMap: 12000
+      appendClientIdToMapName: true
       numRuns: 1
       payload:
         fixedSize:
