@@ -1,0 +1,51 @@
+replicaCount: 20
+image:
+  tag: 0.16.3-dev5
+  digest: 615a97f40ddb2f70c1e33cd5e431d4be083382d01a8bcf2812759aab53c84550
+resources:
+  requests:
+    cpu: "1"
+    memory: "100M"
+  limits:
+    cpu: "2"
+    memory: "200M"
+config:
+  chaosMonkeys:
+    memberKiller:
+      enabled: false
+  stateCleaners:
+    queues:
+      enabled: false
+  queueTests:
+    tweets:
+      enabled: false
+    load:
+      enabled: false
+  mapTests:
+    pokedex:
+      enabled: false
+    load:
+      enabled: true
+      numMaps: 10
+      numEntriesPerMap: 12000
+      appendClientIdToMapName: true
+      numRuns: 1
+      payload:
+        fixedSize:
+          enabled: false
+        variableSize:
+          enabled: true
+          lowerBoundaryBytes: 1000
+          # 10mb
+          upperBoundaryBytes: 10000000
+      mapPrefix:
+        enabled: true
+        prefix: "ht_"
+      testLoop:
+        type: batch
+        batch:
+          sleeps:
+            afterBatchAction:
+              enabled: false
+            afterActionBatch:
+              enabled: false
