@@ -1,8 +1,14 @@
+replicaCount: 1
+image:
+  tag: 0.16.3-dev4
+  digest: 5ded7edc93944d53d89263610eabcc84a323a48e9030ccaa8d8b5d973f94fa08
 resources:
   requests:
     cpu: "1"
+    memory: "20M"
   limits:
     cpu: "2"
+    memory: "40M"
 config:
   chaosMonkeys:
     memberKiller:
@@ -21,18 +27,18 @@ config:
     load:
       enabled: true
       # Goal: Exhaust 36gb of memory as quickly as possible
-      # 10 maps --> Each map needs to write 3,6gb --> 36.000mb or 36.000.000kb
-      # Item size: 1.2kb
-      # Items per map: 3000000
+      # 30 maps --> Each map needs to write 1,2gb --> 12.000mb or 12.000.000kb
+      # Given item size: 2kb
+      # Therefore items per map: 600.000
       # But: "ht_" pattern configured with 1 backup --> We need to occupy only
-      # half of 36gb with primary entries --> items per map: 15000000
-      numMaps: 10
-      numEntriesPerMap: 15000000
+      # half of 36gb with primary entries --> items per map: 300.000
+      numMaps: 30
+      numEntriesPerMap: 300000
       numRuns: 1
       payload:
         fixedSize:
           enabled: true
-          sizeBytes: 1200
+          sizeBytes: 2000
         variableSize:
           enabled: false
       mapPrefix:
