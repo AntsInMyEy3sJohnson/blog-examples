@@ -1,0 +1,51 @@
+replicaCount: 1
+image:
+  tag: 0.16.3-dev4
+  digest: 5ded7edc93944d53d89263610eabcc84a323a48e9030ccaa8d8b5d973f94fa08
+resources:
+  requests:
+    cpu: "1"
+    memory: "250M"
+  limits:
+    cpu: "2"
+    memory: "500M"
+config:
+  chaosMonkeys:
+    memberKiller:
+      enabled: false
+  stateCleaners:
+    queues:
+      enabled: false
+  queueTests:
+    tweets:
+      enabled: false
+    load:
+      enabled: false
+  mapTests:
+    pokedex:
+      enabled: false
+    load:
+      enabled: true
+      # Now 10 replicas of Hazeltest, so we can decrease number
+      # of entries per map to 30.000
+      numMaps: 30
+      numEntriesPerMap: 30000
+      numRuns: 1
+      payload:
+        fixedSize:
+          enabled: true
+          # 20mb
+          sizeBytes: 20000000
+        variableSize:
+          enabled: false
+      mapPrefix:
+        enabled: true
+        prefix: "ht_"
+      testLoop:
+        type: batch
+        batch:
+          sleeps:
+            afterBatchAction:
+              enabled: false
+            afterActionBatch:
+              enabled: false
