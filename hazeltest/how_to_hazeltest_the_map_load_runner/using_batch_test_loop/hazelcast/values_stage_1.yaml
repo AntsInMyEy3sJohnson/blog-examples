@@ -9,8 +9,8 @@ platform:
           cpu: "8"
           memory: "20G"
       jvmResources:
-        xmx: 6400m
-        xms: 6400m
+        xmx: 16000m
+        xms: 16000m
   config:
     nativeMemory:
       enabled: true
