@@ -1,7 +1,7 @@
 replicaCount: 1
 image:
-  tag: 0.16.3-dev4
-  digest: 5ded7edc93944d53d89263610eabcc84a323a48e9030ccaa8d8b5d973f94fa08
+  tag: 0.16.3-dev5
+  digest: 615a97f40ddb2f70c1e33cd5e431d4be083382d01a8bcf2812759aab53c84550
 resources:
   requests:
     cpu: "1"
