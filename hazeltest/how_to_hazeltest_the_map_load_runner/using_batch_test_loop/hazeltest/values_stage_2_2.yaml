@@ -28,6 +28,8 @@ config:
       enabled: true
       numMaps: 30
       numEntriesPerMap: 12000
+      # Will increase number of maps from 30 to 300
+      # (load dimension 3)
       appendClientIdToMapName: true
       numRuns: 1
       payload:

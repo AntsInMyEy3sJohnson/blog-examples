@@ -1,3 +1,4 @@
+# Load dimension 4
 replicaCount: 10
 image:
   tag: 0.16.3-dev5
@@ -28,6 +29,7 @@ config:
       enabled: true
       numMaps: 30
       # Now 10 replicas, so decrease number of entries per map to 40.000
+      # (load dimension 1)
       numEntriesPerMap: 40000
       numRuns: 1
       payload:

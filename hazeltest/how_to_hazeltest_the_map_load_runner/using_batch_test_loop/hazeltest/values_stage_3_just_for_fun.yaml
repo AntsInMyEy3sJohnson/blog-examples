@@ -1,3 +1,4 @@
+# Load dimension 4
 replicaCount: 20
 image:
   tag: 0.16.3-dev5
@@ -26,6 +27,7 @@ config:
       enabled: false
     load:
       enabled: true
+      # Load dimension 3
       numMaps: 10
       numEntriesPerMap: 12000
       appendClientIdToMapName: true
@@ -36,7 +38,8 @@ config:
         variableSize:
           enabled: true
           lowerBoundaryBytes: 1000
-          # 10mb
+          # Increase upper boundary to 10mb
+          # (load dimension 2)
           upperBoundaryBytes: 10000000
       mapPrefix:
         enabled: true

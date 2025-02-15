@@ -27,12 +27,15 @@ config:
     load:
       enabled: true
       numMaps: 30
+      # Decrease number of items per map (load dimension 1) as a result
+      # of having significantly increased payload size
       numEntriesPerMap: 12000
       numRuns: 1
       payload:
         fixedSize:
           enabled: false
         variableSize:
+          # Load dimension 2
           enabled: true
           lowerBoundaryBytes: 1000
           upperBoundaryBytes: 70000
