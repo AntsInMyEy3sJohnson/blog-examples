@@ -26,14 +26,14 @@ config:
       enabled: false
     load:
       enabled: true
-      # Goal: Exhaust 36gb of memory as quickly as possible
-      # 30 maps --> Each map needs to write 1,2gb --> 12.000mb or 12.000.000kb
+      # Goal: Exhaust 48gb of memory as quickly as possible
+      # 30 maps --> Each map needs to write 1,6gb --> 16.000mb or 16.000.000kb
       # Given item size: 2kb
-      # Therefore items per map: 600.000
+      # Therefore items per map: 800.000
       # But: "ht_" pattern configured with 1 backup --> We need to occupy only
-      # half of 36gb with primary entries --> items per map: 300.000
+      # half of 48gb with primary entries --> items per map: 400.000
       numMaps: 30
-      numEntriesPerMap: 300000
+      numEntriesPerMap: 400000
       numRuns: 1
       payload:
         fixedSize:

@@ -27,8 +27,8 @@ config:
     load:
       enabled: true
       numMaps: 30
-      # Now 10 replicas, so decrease number of entries per map to 30.000
-      numEntriesPerMap: 30000
+      # Now 10 replicas, so decrease number of entries per map to 40.000
+      numEntriesPerMap: 40000
       numRuns: 1
       payload:
         fixedSize:
