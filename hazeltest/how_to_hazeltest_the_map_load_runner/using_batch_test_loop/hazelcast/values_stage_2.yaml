@@ -1,6 +1,7 @@
 platform:
   cluster:
     members:
+      count: 3
       containerResources:
         requests:
           cpu: "8"
