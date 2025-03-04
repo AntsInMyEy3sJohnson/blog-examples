@@ -1,15 +1,15 @@
 # Load dimension 4
 replicaCount: 10
 image:
-  tag: 0.16.3-dev5
-  digest: 615a97f40ddb2f70c1e33cd5e431d4be083382d01a8bcf2812759aab53c84550
+  tag: 0.16.3-dev7
+  digest: f577bace2857d1957dd23c57d2dd8c7e81ac00b3a9bece810a9d6236f6f7dba7
 resources:
   requests:
     cpu: "1"
-    memory: "20M"
+    memory: "25M"
   limits:
     cpu: "2"
-    memory: "40M"
+    memory: "50M"
 config:
   chaosMonkeys:
     memberKiller:
